@@ -4,5 +4,7 @@ Welcome to the Connect Four server-side project! This application is built using
 
 # Features
 * *Player Registration System:* Players need to register via the server's website prior to starting a game.
-* Game Processing: Accepts client-side requests for processing the current game state, computes the next move and returns the updated game state to the client.
-* Game Storage: Stores all games played, allowing for game history checks and
+* *Game Processing:* Accepts client-side requests for processing the current game state, computes the next move and returns the updated game state to the client.
+* *Game Storage:* Stores all games played, allowing for game history checks and
+* *Information:* Displays information about the players and the games, including number of games played, won, lost, and other relevant data.
+
