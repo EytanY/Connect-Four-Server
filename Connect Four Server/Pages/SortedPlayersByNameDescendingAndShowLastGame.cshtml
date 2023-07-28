@@ -1,0 +1,100 @@
+﻿@page
+@model Connect_Four_Server.Pages.SortedPlayersByNameDescendingAndShowLastGameModel
+@using Models
+@{
+    ViewData["Title"] = "SortedPlayersByNameDescendingAndShowLastGame";
+}
+
+<h1>Sorted Players By Name Descending And Last Game</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].Counrty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Winner)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var lists = Model.PlayersTbl.Zip(Model.GamesTbl, (player, game) => new
+            {
+                FirstName=player.FirstName,
+                LastName=player.LastName,
+                Phone=player.Phone,
+                Country=player.Counrty,
+                GameId=game.Id,
+                GameDate=game.Date,
+                GameWinner=game.Winner
+            });
+        }
+        @foreach (var item in lists) {
+    <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                    @{
+                        string? countryName = Enum.GetName(typeof(eCountry), item.Country);
+                    }
+                @Html.DisplayFor(modelItem => countryName)
+            </td>
+            @if (item.GameId != 0)
+             {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameDate)
+                    </td>
+                    <td>
+                        @{
+                            string? winner = Enum.GetName(typeof(PlayerTool), item.GameWinner);
+                        }
+                        @Html.DisplayFor(modelItem => winner)
+                    </td>
+                }
+             else
+                {
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        None
+                    </td>
+                    <td>
+                        None
+                    </td>
+                }
+
+     </tr>
+}
+    </tbody>
+</table>

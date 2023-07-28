@@ -1,0 +1,60 @@
+﻿@page
+@model Connect_Four_Server.Pages.AllGamesByPlayerNameModel
+@using Models
+@{
+    ViewData["Title"] = "AllGamesByPlayerName";
+}
+
+<h1>All Games By Player Name</h1>
+
+<form method="get">
+    <p>
+
+        @Html.DropDownList("PlayersName")
+    </p>
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].PlayerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Winner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.GamesTbl) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                    @{
+                        PlayerTool winner = (PlayerTool)Enum.ToObject(typeof(PlayerTool), item.Winner);
+                        string? winnerStr = Enum.GetName(typeof(PlayerTool), winner);
+                    }
+                @Html.DisplayFor(modelItem => winnerStr)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

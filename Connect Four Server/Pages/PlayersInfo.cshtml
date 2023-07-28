@@ -1,0 +1,20 @@
+﻿@page
+@model Connect_Four_Server.Pages.PlayersInfoModel
+@using Models
+
+@{
+    ViewData["Title"] = "PlayersInfo";
+}
+
+<div class="text-center">
+    <h1 class="display-4"> Player Information</h1>
+    <div>
+        <p>This page displays information about the players.</p>
+        <a class="nav-link text-blue" asp-area="" asp-page="/SortedPlayersByName">Sort by name and showing all the information</a>
+        <a class="nav-link text-blue" asp-area="" asp-page="/SortedPlayersByNameDescendingAndShowLastGame">Sort by name descending and showing the last game's information</a>
+        <a class="nav-link text-blue" asp-area="" asp-page="/AllGamesByPlayerName">Get all the player's game based on name</a>
+        <a class="nav-link text-blue" asp-area="" asp-page="/GamesNumberEachPlayer">Get number of game for each player</a>
+        <a class="nav-link text-blue" asp-area="" asp-page="/OrderPlayerByTheirCountry">Order player by their country</a>
+        <a class="nav-link text-blue" asp-area="" asp-page="/OrderPlayerByGamesNumber">Order player by their number of games</a>
+    </div>
+</div>

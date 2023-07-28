@@ -1,0 +1,61 @@
+﻿@page
+@model Connect_Four_Server.Pages.OrderPlayerByTheirCountryModel
+@using Models
+@using Models.Tables
+@{
+    ViewData["Title"] = "OrderPlayerByTheirCountry";
+}
+
+<h1>Order Player By Their Country</h1>
+
+
+@foreach (IEnumerable<PlayersTbl> players in Model.GroupedPlayers)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayersTbl[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayersTbl[0].FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayersTbl[0].LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayersTbl[0].Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlayersTbl[0].Counrty)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in players)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @{string? countryName = Enum.GetName(typeof(eCountry), item.Counrty);}
+                        @Html.DisplayFor(modelItem => countryName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

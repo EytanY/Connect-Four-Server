@@ -1,0 +1,52 @@
+﻿@page
+@model Connect_Four_Server.Pages.AllGamesModel
+@using Models
+@{
+    ViewData["Title"] = "AllGames";
+}
+
+<h1>All Games</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].PlayerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GamesTbl[0].Winner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.GamesTbl) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                    @{
+                        PlayerTool winner = (PlayerTool)Enum.ToObject(typeof(PlayerTool), item.Winner);
+                        string? winnerStr = Enum.GetName(typeof(PlayerTool), winner);
+                    }
+                @Html.DisplayFor(modelItem => winnerStr)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

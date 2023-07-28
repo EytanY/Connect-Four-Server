@@ -1,0 +1,56 @@
+﻿@page
+@model Connect_Four_Server.Pages.SortedPlayersByNameModel
+@using Models
+
+@{
+    ViewData["Title"] = "SortedPlayersByName";
+}
+
+<h1>Sorted Players By Name</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].GamesNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayersTbl[0].Counrty)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.PlayersTbl) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GamesNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                    @{
+                        string? countryName = Enum.GetName(typeof(eCountry), item.Counrty);
+                    }
+                @Html.DisplayFor(modelItem => countryName)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

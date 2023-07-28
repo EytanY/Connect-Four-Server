@@ -1,0 +1,17 @@
+﻿@page
+@model Connect_Four_Server.Pages.GamesInfoModel
+
+@{
+    ViewData["Title"] = "GamesInfo";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4"> Games Information</h1>
+    <div>
+        <p>This page displays information about the games.</p>
+        <a class="nav-link text-blue" asp-area="" asp-page="/AllGames">All Games</a>
+        <a class="nav-link text-blue" asp-area="" asp-page="/AllGameWithoutDuplicates">All Game Without Duplicates (each game with diffrent player's ID)'</a>
+        <a class="nav-link text-blue" asp-area="" asp-page="/AllGamesByPlayerName">Get All The Player's Game Based On His Name</a>
+    </div>
+</div>
